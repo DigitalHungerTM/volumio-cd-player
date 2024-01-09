@@ -16,6 +16,6 @@ https://github.com/ryanwa18/spotipi-eink/tree/main
 https://github.com/talaexe/Spotify-RFID-Record-Player  
 
 Volumio REST API docs  
-https://developers.volumio.com/api/rest-api
+https://developers.volumio.com/api/rest-api  
 Volumio CLI docs  
 https://developers.volumio.com/api/command-line-client
