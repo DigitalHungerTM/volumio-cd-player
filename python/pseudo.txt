@@ -1,0 +1,6 @@
+1. scan rfid tag
+2. format a request that the volumio rest api can handle
+3. send api request
+4. parse response
+5. sleep?
+6. repeat
