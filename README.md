@@ -9,6 +9,13 @@ A python based environment that scans rfid tags, and sends play requests to the 
 - make 3d model
 - repurpose speakers
 - integrate hifiberry
+- buy parts
+-   screen
+-   rfid scanner
+-   rfid tags
+-   large (not necessarily fast) USB stick for the server
+-   hifiberry dac
+-   new amplifier that doesn't buzz (hifiberry amp2? (has dac built in))
 
 ## Handy Links
 Other repos that have sort of the same idea  
