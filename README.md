@@ -9,3 +9,8 @@ A python based environment that scans rfid tags, and sends play requests to the 
 - make 3d model
 - repurpose speakers
 - integrate hifiberry
+
+## Handy Links
+https://github.com/ryanwa18/spotipi-eink/tree/main  
+https://github.com/talaexe/Spotify-RFID-Record-Player  
+
