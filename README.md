@@ -1,6 +1,10 @@
 # volumio-cd-player
 A python based environment that scans rfid tags, and sends play requests to the volumio API.
 
+# ideas
+- use a .json file to keep track of albums and their titles
+- create a script that automatically handles naming album folders
+
 
 ## TODO
 - make a workflow for the python API
