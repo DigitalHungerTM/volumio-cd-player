@@ -1,14 +1,10 @@
 from socketIO_client import SocketIO
 
-from time import sleep
-
 class Volumio:
     def __init__(self, address="localhost", port=3000):
         """
-        Class for interacting with the Volumio socket.io server
-
-        :param address: Server address (default is "localhost").
-        :param port: Server port (defualt is 3000).
+        :param `address`: address for the SocketIO API, defaults to "localhost"
+        :param `port`: port for the SocketIO API, defaults to 3000
         """
         # create a socket and connect to the Volumio server
         self._sock = SocketIO(address, port)
@@ -17,10 +13,10 @@ class Volumio:
     def _send(self, command, args=None, callback=None):
         """
         Send a command to the socket.io server.
-        :param command: Command to send.
-        :param args: Arguments as a dictionary.
-        :param callback: Callback function called upon receiving the response.
-        :return: None
+
+        :param `command`: Command to send.
+        :param `args`: Arguments as a dictionary.
+        :param `callback`: Callback function called upon receiving the response.
         """
         # Emit the command to the server and wait for callbacks
         self._sock.emit(command, args, callback)
@@ -28,29 +24,28 @@ class Volumio:
 
     def getState(self):
         """
-        Get the state of the player
-        DOESN'T WORK
-        :return: state
+        gets the state of the player
+
+        Doesn't work
         """
         self._send("getState")
 
-
-    def play_uri(self, uri, service):
+    def play_uri(self, uri: str, service: str):
         """
         Immediately plays the speified URI
-        :param uri: URI
-        :param service: Service used to play the uri
-        :return: None
+
+        :param `uri`: URI of the file folder to play
+        :param `service`: Service used to play the uri
         """
         # Bruteforce method that clears the queue
         self._send("clearQueue")
         self._send("addPlay", {"status": "play", "service": service, "uri": uri})
 
-    def play_album(self, album_title):
+    def play_album(self, album_title: str):
         """
-        Plays an album by `album_name`
-        :param album_name: Name of the album
-        :return: None
+        Plays an album by `album_title`.
+        
+        :param `album_title`: Title of the album
         """
         uri_base = "music-library/NAS/Music/"
         uri = uri_base + album_title
@@ -60,25 +55,26 @@ class Volumio:
     def toggle_playback(self):
         """
         Toggles playback.
-        :return: None
         """
         self._send("toggle")
+
+    def stop(self):
+        """
+        Completely stops playback.
+        """
+        self._send("stop")
 
     def pause(self):
         """
         Pauses playback.
-        :return: None
         """
         self._send("pause")
     
     def resume(self):
         """
         Resumes playback.
-        :return: None
         """
         self._send("play")
-
-
 
 
 def main():
