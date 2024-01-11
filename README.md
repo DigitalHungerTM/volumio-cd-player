@@ -24,7 +24,10 @@ A python based environment that scans rfid tags, and sends play requests to the 
 ## Handy Links
 Other repos that have sort of the same idea  
 https://github.com/ryanwa18/spotipi-eink/tree/main  
-https://github.com/talaexe/Spotify-RFID-Record-Player  
+https://github.com/talaexe/Spotify-RFID-Record-Player
+
+MFRC522 library  
+https://github.com/pimylifeup/MFRC522-python
 
 Volumio REST API docs  
 https://developers.volumio.com/api/rest-api  
