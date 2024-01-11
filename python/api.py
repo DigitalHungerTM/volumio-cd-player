@@ -1,9 +1,9 @@
 # requirest python 3.10 or higher (switch statement)
 # Mathijs Afman
 
-import requests
 import sys
 from pprint import pprint
+import requests
 
 LOCALHOST = "localhost:3000"
 NETWORK = "http://volumio.local/"
@@ -17,6 +17,8 @@ PLAY_URL = API_URL + "commands/?cmd=play"
 TOGGLE_URL = API_URL + "commands/?cmd=toggle"
 GET_STATE_URL = API_URL + "getState"
 VOLUME_URL = API_URL + "commands/?cmd=volume&volume="
+
+DEBUG = True
 
 class volumio_api:
     # state
@@ -51,8 +53,7 @@ class volumio_api:
     def get_volume(self):
         state_json = self.get_state()
         state = dict(state_json)
-        volume = state['volume']
-        return volume
+        return state['volume']
 
     def set_volume(self, volume: int | str):
         """
@@ -61,44 +62,40 @@ class volumio_api:
         req_url = VOLUME_URL + str(volume)
         r = requests.get(req_url)
         return r.json()
-    
-    # command parsing
-    # the match statement is introduced in python 3.10
-    # either upgrade to python 3.10 or convert this
-    # to an if-else tree
-    def handle_command(self, command: str):
-        command = command.split(" ")
-        match command[0]:
-            case "play":
-                return self.play()
-            case "pause":
-                return self.pause()
-            case "toggle":
-                return self.toggle()
-            case "next":
-                return self.play_next()
-            case "previous":
-                return self.play_prev()
-            case "state":
-                return self.get_state()
-            case "volume":
-                try:
-                    return self.set_volume(command[1])
-                except IndexError:
-                    print("no volume provided")
-            # case "get volume":
-            #     print(my_api.get_volume())
-            case _:
-                return "unknown command"
+            
+    def handle_command_if(self, command_str: str):
+        command_list = command_str.split(" ")
+        command = command_list[0]
+        if command == 'play':
+            response = self.play()
+        elif command == 'pause':
+            response =  self.pause()
+        elif command == 'toggle':
+            response =  self.toggle()
+        elif command == 'next':
+            response =  self.play_next()
+        elif command == 'previous':
+            response =  self.play_prev()
+        elif command == 'state':
+            response =  self.get_state()
+        elif command == 'volume':
+            try:
+                response =  self.set_volume(command_list[1])
+            except IndexError:
+                response = "no volume provided"
+        else:
+            response =  "unknown command"
 
+        return response
 
 
 def main():
     my_api = volumio_api()
     while True:
         try:
-            command = input("what would you like to do?\n").split(' ')
-            my_api.handle_command(command)
+            command = input("what would you like to do?\n")
+            r = my_api.handle_command_if(command)
+            if DEBUG: print(r)
         except KeyboardInterrupt:
             print("\nexiting")
             exit(0)
