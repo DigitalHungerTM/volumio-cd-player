@@ -26,10 +26,16 @@ Other repos that have sort of the same idea
 https://github.com/ryanwa18/spotipi-eink/tree/main  
 https://github.com/talaexe/Spotify-RFID-Record-Player
 
-MFRC522 library  
-https://github.com/pimylifeup/MFRC522-python
+MFRC522 libraries  
+https://github.com/pimylifeup/MFRC522-python  
+https://github.com/ondryaso/pi-rc522/tree/master
 
 Volumio REST API docs  
 https://developers.volumio.com/api/rest-api  
 Volumio CLI docs  
 https://developers.volumio.com/api/command-line-client
+
+## Installation:
+- turn SPI on by adding the line `dtparam=spi=on` to `/boot/userconfig.txt`
+- reboot and check if this worked by running `lsmod | grep spi`. If it worked, spi_bcm2835 will be returned.
+- `pip3 install spidev`
