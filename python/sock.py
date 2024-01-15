@@ -10,12 +10,14 @@ class Volumio:
         self._sock = SocketIO(address, port)
         self._waiting = 0.1
 
+    # general
+
     def _send(self, command, args=None, callback=None):
         """
         Send a command to the socket.io server.
 
         :param `command`: Command to send.
-        :param `args`: Arguments as a dictionary.
+        :param `args`: Arguments.
         :param `callback`: Callback function called upon receiving the response.
         """
         # Emit the command to the server and wait for callbacks
@@ -29,6 +31,8 @@ class Volumio:
         Doesn't work
         """
         self._send("getState")
+
+    # playback
 
     def play_uri(self, uri: str, service: str):
         """
@@ -75,6 +79,31 @@ class Volumio:
         Resumes playback.
         """
         self._send("play")
+
+    # volume
+    # TODO
+    #  testing
+        
+    def set_volume(self, value):
+        """
+        sets the volume to `value`
+        
+        :param `value`: (0-100)
+        """
+        self._send("volume", value)
+    
+    def mute(self):
+        """
+        mutes the player
+        """
+        self._send("mute")
+
+    def unmute(self):
+        """
+        unmutes the player
+        """
+        self._send("unmute")
+
 
 
 def main():
