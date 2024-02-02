@@ -1,4 +1,10 @@
+# Author: Mathijs Afman
+# Note, this api is bad at playing albums with numbers in it.
+# it does, however, work with chinese characters.
+
 from socketIO_client import SocketIO
+
+LIBRARY_URI = "music-library/NAS/truenasDataShare"
 
 class Volumio:
     def __init__(self, address="localhost", port=3000):
@@ -51,8 +57,8 @@ class Volumio:
         
         :param `album_title`: Title of the album
         """
-        uri_base = "music-library/NAS/Music/"
-        uri = uri_base + album_title
+        # uri_base = "music-library/NAS/truenasDataShare/"
+        uri = LIBRARY_URI + album_title
         service = 'mpd' # found this by looking at the getState
         self.play_uri(uri, service)
 
@@ -105,12 +111,9 @@ class Volumio:
         self._send("unmute")
 
 
-
 def main():
     volumio = Volumio("http://volumio.local", None)
     volumio.play_album('Hyperspace')
-    # print("This program is a module meant to be used by `main.py`")
-    # exit(-1)
 
 
 if __name__ == "__main__":

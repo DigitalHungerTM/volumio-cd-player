@@ -16,6 +16,12 @@ def main():
 
     volumio.play_album('Hyperspace')
 
+    # while true:
+    # scan
+    # find album name that corresponds to tag UID
+    # play album
+    # sleep for interval
+
 
 if __name__ == "__main__":
     main()
